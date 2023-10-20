@@ -20,7 +20,7 @@ _RELEASE = True
 
 if not _RELEASE:
     _component_func = components.declare_component(
-        "karina_input_ccy",
+        "input_ccy",
         url="http://localhost:3001",
     )
 else:
@@ -29,7 +29,7 @@ else:
     # build directory:
     parent_dir = os.path.dirname(os.path.abspath(__file__))
     build_dir = os.path.join(parent_dir, "frontend\\build")
-    _component_func = components.declare_component("karina_input_ccy", path=build_dir)
+    _component_func = components.declare_component("input_ccy", path=build_dir)
 
 
 # Create a wrapper function for the component. This is an optional
@@ -37,9 +37,10 @@ else:
 # `declare_component` and call it done. The wrapper allows us to customize
 # our component's API: we can pre-process its input args, post-process its
 # output value, and add a docstring for users.
-def karina_input_ccy(name, label, key=None):
-
-    component_value = _component_func(name=name, label=label, key=key, default=0)
+def input_ccy(name, label, locale, ccy, key=None):
+    component_value = _component_func(
+        name=name, label=label, locale=locale, ccy=ccy, key=key, default=None
+    )
 
     # We could modify the value returned from the component if we wanted.
     # There's no need to do this in our simple example - but it's an option.
@@ -52,17 +53,30 @@ def karina_input_ccy(name, label, key=None):
 if not _RELEASE:
     import streamlit as st
 
-    st.subheader("Component with constant args")
+    st.markdown("---")
+    st.subheader("Component NO CCY | EN-US")
 
-    # Create an instance of our component with a constant `name` arg, and
-    # print its output value.
-    amount = karina_input_ccy(name="test", label="Test Karina Input Field")
+    amount = input_ccy(
+        name="test2", label="Num EN", locale="en-US", ccy=False, key="foo1"
+    )
     st.markdown(f"User input: {amount}")
 
     st.markdown("---")
-    st.subheader("Component with variable args")
+    st.subheader("Component NO CCY | PT-BR")
 
+    amount = input_ccy(
+        name="test2", label="Num PT", locale="PT-BR", ccy=False, key="foo2"
+    )
+    st.markdown(f"User input: {amount}")
 
-    name_input = st.text_input("Enter a field label", value="Streamlit customised input field")
-    amount = karina_input_ccy(name="test", label=name_input, key="foo")
+    st.markdown("---")
+    st.subheader("Component CCY | EN-US")
+
+    amount = input_ccy(name="test2", label="$ EN", locale="en-US", ccy=True, key="foo3")
+    st.markdown(f"User input: {amount}")
+
+    st.markdown("---")
+    st.subheader("Component CCY | PT-BR")
+
+    amount = input_ccy(name="test2", label="$ PT", locale="pt-BR", ccy=True, key="foo4")
     st.markdown(f"User input: {amount}")

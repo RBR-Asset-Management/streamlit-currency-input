@@ -1,3 +1,6 @@
 /build/
-/karina_input_ccy/frontend/build/
-/karina_input_ccy/frontend/node_modules/
+/input_ccy/frontend/build/
+/input_ccy/frontend/node_modules/
+
+__pycache__/
+.venv*/

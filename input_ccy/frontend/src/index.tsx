@@ -1,10 +1,10 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import KarinaInputCcy from "./KarinaInputCcy"
+import InputCcy from "./InputCcy"
 
 ReactDOM.render(
   <React.StrictMode>
-    <KarinaInputCcy />
+    <InputCcy />
   </React.StrictMode>,
   document.getElementById("root")
 )

@@ -1,11 +1,11 @@
 import setuptools
 
 setuptools.setup(
-    name="karina_input_ccy",
+    name="input_ccy",
     version="0.0.1",
-    author="",
-    author_email="",
-    description="",
+    author="Thomaz Pougy",
+    author_email="tp@rbrasset.com.br",
+    description="Streamlit custom component to input currency",
     long_description="",
     long_description_content_type="text/plain",
     url="",
